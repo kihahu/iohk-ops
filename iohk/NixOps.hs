@@ -395,6 +395,7 @@ data NixopsConfig = NixopsConfig
   , cEnvironment      :: Environment
   , cTarget           :: Target
   , cUpdateBucket     :: Text
+  , cSigningFinger    :: GPGFinger
   , cElements         :: [Deployment]
   , cFiles            :: [Text]
   , cDeplArgs         :: DeplArgs
@@ -412,6 +413,7 @@ instance FromJSON NixopsConfig where
         <*> v .: "environment"
         <*> v .: "target"
         <*> v .: "installer-bucket"
+        <*> v .: "signing-fingerprint" .!= "1234567890123456789012345678901234567890"
         <*> v .: "elements"
         <*> v .: "files"
         <*> v .: "args"
